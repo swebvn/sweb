@@ -1,0 +1,25 @@
+---
+- name: download source wordpress
+  get_url:
+    url: https://wordpress.org/latest.zip
+    dest: /home/{{ user_domain }}/domains/{{ server_name }}/public_html/latest.zip
+  tags: wp
+
+- name: extract file zip source
+  unarchive:
+    remote_src: yes
+    src: /home/{{ user_domain }}/domains/{{ server_name }}/public_html/latest.zip
+    dest: /home/{{ user_domain }}/domains/{{ server_name }}/public_html
+  tags: wp
+
+- name: copy source from folder wordpress
+  shell: chdir='/home/{{ user_domain }}/domains/{{ server_name }}/public_html/wordpress' /usr/bin/mv * ../
+  tags: wp  
+
+- name: copy wp-config.php file
+  template: src=wp-config.php.j2 dest=/home/{{ user_domain }}/domains/{{ server_name }}/public_html/wp-config.php
+  tags: wp
+
+- name: chown user
+  shell: chown {{ user_domain }}:{{ group_domain  }} -R /home/{{ user_domain }}/domains/{{ server_name }}/public_html/*
+  tags: wp

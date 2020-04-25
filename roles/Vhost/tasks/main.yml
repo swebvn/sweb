@@ -1,0 +1,67 @@
+---
+- name: create user owner website
+  user:
+    name: '{{ user_domain }}'
+    create_home: no
+    password: '{{ ftp_pass }}'
+  ignore_errors: yes
+  tags:
+    - vhost
+
+- name: create group owner website
+  group:
+    name: '{{ group_domain }}'
+    state: present
+  ignore_errors: yes
+  tags:
+    - vhost
+
+- name: create folder contains website
+  file:
+    path: /home/{{ user_domain }}/domains/{{ server_name }}/public_html
+    state: directory
+    mode: 755
+    owner: '{{ user_domain }}'
+    group: '{{ group_domain }}'
+  tags:
+    - vhost
+
+
+- name: create folder contains vhsot
+  file:
+    path: /etc/nginx/conf.d
+    state: directory
+    
+- name: copy nginx.conf file
+  copy:
+    src: nginx.conf
+    dest: /etc/nginx/
+
+- name: copy template vhost file
+  template:
+    src: vhost.conf.j2
+    dest: /etc/nginx/conf.d/{{ server_name }}.conf
+  ignore_errors: yes
+  tags:
+    - template-1
+
+
+- name: copy template vhost file
+  template:
+    src: vhost-2.conf.j2
+    dest: /etc/nginx/conf.d/{{ server_name }}.conf
+  ignore_errors: yes
+  tags:
+    - template-2
+
+- name: create file log
+  file:
+    path: /var/log/nginx/domains
+    state: directory
+
+- name: restart Nginx service
+  service: name=nginx state=restarted
+  ignore_errors: yes
+  tags:
+    - vhost
+
