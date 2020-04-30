@@ -3,7 +3,6 @@
   user:
     name: '{{ user_domain }}'
     create_home: no
-    password: '{{ ftp_pass }}'
   ignore_errors: yes
   tags:
     - vhost
@@ -15,6 +14,9 @@
   ignore_errors: yes
   tags:
     - vhost
+
+- name: update password user ftp
+  shell: echo '{{ ftp_pass }}' | passwd --stdin '{{ user_domain }}'
 
 - name: create folder contains website
   file:
