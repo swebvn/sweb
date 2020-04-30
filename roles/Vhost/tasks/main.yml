@@ -68,4 +68,8 @@
   ignore_errors: yes
   tags:
     - vhost
-
+    
+ - name: chmod folder /home
+   shell: find /home/{{ user_domain }} -type d -exec chmod 755 {} \;
+   tags:
+     - vhost
