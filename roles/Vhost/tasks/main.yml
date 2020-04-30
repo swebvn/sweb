@@ -17,6 +17,8 @@
 
 - name: update password user ftp
   shell: echo '{{ ftp_pass }}' | passwd --stdin '{{ user_domain }}'
+  tags:
+    - vhost
 
 - name: create folder contains website
   file:
