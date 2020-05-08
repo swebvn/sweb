@@ -58,5 +58,16 @@
 - name: create folder temp
   shell: mkdir -p /var/cache/nginx/client_temp
 
+- name: download phpmyadmin
+  shell: wget https://files.phpmyadmin.net/phpMyAdmin/4.9.5/phpMyAdmin-4.9.5-all-languages.zip -O /etc/nginx/html
+
+- name: unzip file phpmyadmin
+  shell: cd /etc/nginx/html/ && unzip phpMyAdmin-4.9.5-all-languages.zip -d /etc/nginx/html/phpmyadmin
+
+- name: copy phpmyadmin config file
+  template:
+    src: roles/Vhost/templates/phpmyadmin.conf.j2
+    dest: /etc/nginx/phpmyadmin.conf
+
 - name: start Nginx Service
   service: name=nginx state=started enabled=yes

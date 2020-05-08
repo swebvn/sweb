@@ -1,4 +1,10 @@
 ---
+- name: extract ioncube
+  unarchive:
+    src: '{{ source_dir }}/ioncube_loaders_lin_x86-64.tar.gz'
+    dest: '{{ source_dir }}'
+    remote_src: yes
+
 - name: extract source php
   unarchive:
     src: '{{ source_dir }}/{{ php7 }}'
@@ -42,6 +48,9 @@
     path: /opt/{{ php_name }}/etc/php-fpm.conf
     line: include=/opt/{{ php_name }}/etc/php-fpm.d/*.conf
 
+- name: change www.conf.default
+  shell: mv /opt/{{ php_name }}/etc/php-fpm.d/www.conf.default /opt/{{ php_name }}/etc/php-fpm.d/www.conf
+
 - name: insert configuration block in /opt/php-*/etc/php-fpm.conf
   shell: sed  -i '1i process_control_timeout = 5s' /opt/{{ php_name }}/etc/php-fpm.conf
 
@@ -50,6 +59,21 @@
 
 - name: insert configuration block in /opt/php-*/etc/php-fpm.conf
   shell: sed  -i '1i emergency_restart_threshold = 5' /opt/{{ php_name }}/etc/php-fpm.conf
+
+- name: enable opcache
+  lineinfile:
+    path: /opt/{{ php_name }}/lib/php.ini
+    line: zend_extension = "opcache.so"
+
+- name: copy ioncube loader
+  copy:
+    src: '{{ source_dir }}/ioncube/ioncube_loader_lin_7.2.so'
+    dest: '/opt/{{ php_name }}/lib/php/extensions/*/'
+
+- name: enable ioncube loader
+  lineinfile:
+    path: /opt/{{ php_name }}/lib/php.ini
+    line: zend_extension = "ioncube_loader_lin_7.2.so"
 
 - name: copy start service file
   template:
