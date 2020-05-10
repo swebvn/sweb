@@ -65,7 +65,7 @@
 - name: copy ioncube loader
   copy:
     src: '{{ source_dir }}/ioncube/ioncube_loader_lin_7.2.so'
-    dest: '/opt/{{ php_name }}/lib/php/extensions/*/'
+    dest: '/opt/{{ php_name }}/lib/php/extensions/no-*/'
     remote_src: yes
 
 - name: enable ioncube loader
