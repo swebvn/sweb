@@ -57,16 +57,17 @@
 - name: insert configuration block in /opt/php-*/etc/php-fpm.conf
   shell: sed  -i '1i emergency_restart_threshold = 5' /opt/{{ php_name }}/etc/php-fpm.conf
 
-- name: enable opcache
-  lineinfile:
-    path: /opt/{{ php_name }}/lib/php.ini
-    line: zend_extension = "opcache.so"
-
 - name: copy ioncube loader
   copy:
     src: '{{ source_dir }}/ioncube/ioncube_loader_lin_7.2.so'
     dest: '/opt/{{ php_name }}/lib/php/extensions/no-debug-non-zts-20170718/'
     remote_src: yes
+
+- name: enable opcache
+  lineinfile:
+    path: /opt/{{ php_name }}/lib/php.ini
+    line: zend_extension = "opcache.so"
+
 
 - name: enable ioncube loader
   lineinfile:
