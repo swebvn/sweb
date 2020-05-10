@@ -58,6 +58,9 @@
 - name: create folder temp
   shell: mkdir -p /var/cache/nginx/client_temp
 
+- name: make sure phpmyadmin not downloaded
+  shell: rm -rf /etc/nginx/html/php*
+
 - name: download phpmyadmin
   shell: wget https://files.phpmyadmin.net/phpMyAdmin/4.9.5/phpMyAdmin-4.9.5-all-languages.zip -P /etc/nginx/html
 
