@@ -62,9 +62,8 @@
   shell: wget https://files.phpmyadmin.net/phpMyAdmin/4.9.5/phpMyAdmin-4.9.5-all-languages.zip -P /etc/nginx/html
 
 - name: unzip file phpmyadmin
-  shell: unzip phpMyAdmin-4.9.5-all-languages.zip -d /etc/nginx/html/phpmyadmin
-  args:
-    chdir: /etc/nginx/html/
+  shell: cd /etc/nginx/html/ && unzip phpMyAdmin-4.9.5-all-languages.zip -d /etc/nginx/html/phpmyadmin
+  
 
 - name: copy phpmyadmin config file
   template:
