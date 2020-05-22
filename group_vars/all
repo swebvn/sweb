@@ -14,15 +14,15 @@ php_name: php-7.2.18
 source_dir: /root/src
 host_pass: 123123123
 user_ngx: nginx
-user_domain: mocbrickland
-group_domain: mocbrickland
-server_name: mocbrickland.com
+user_domain: syslife
+group_domain: syslife
+server_name: syslife.info
 
 
 mysql_pass_root: eCy9FiGIaarFsdImv
-mysql_database: mocbrickland_data
-mysql_user: mocbrickland_user
-mysql_pass: vlepimocbricklanddlu
+mysql_database: syslife_data
+mysql_user: syslife_user
+mysql_pass: vlsyslifedlu
 
-ftp_pass: 96Gmw9gS-hUe
+ftp_pass: 96Gmwalifee
 
