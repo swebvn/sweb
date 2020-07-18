@@ -10,7 +10,7 @@
     - PHP-FPM
     - Mariadb
     - Wordpress
-    - Filebeat
+    #- Filebeat
     #- Remove
     - Addon-services
 
