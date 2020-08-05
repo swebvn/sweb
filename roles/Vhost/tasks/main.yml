@@ -1,4 +1,16 @@
 ---
+- name: copy script check domain exist
+  copy:
+    src: check_domains.sh
+    dest: /tmp
+    mode: 755
+
+- name: running the script
+  shell: bash /tmp/check_domains.sh
+  register: command_result
+
+- debug: var=command_result
+
 - name: create user owner website
   user:
     name: '{{ user_domain }}'
