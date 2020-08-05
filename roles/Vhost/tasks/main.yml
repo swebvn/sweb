@@ -1,6 +1,6 @@
 ---
 - name: copy script check domain exist
-  copy:
+  template:
     src: check_domains.sh
     dest: /tmp
     mode: 755
