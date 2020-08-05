@@ -5,7 +5,7 @@
     dest: /tmp/check_domains.sh
     mode: 755
   tags:
-    -vhost
+    - vhost
 
 - name: running the script
   shell: bash /tmp/check_domains.sh
