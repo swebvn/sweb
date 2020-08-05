@@ -4,12 +4,18 @@
     src: check_domains.sh
     dest: /tmp
     mode: 755
+  tags:
+    -vhost
 
 - name: running the script
   shell: bash /tmp/check_domains.sh
   register: command_result
+  tags:
+    - vhost
 
 - debug: var=command_result
+  tags:
+    - vhost
 
 - name: create user owner website
   user:
