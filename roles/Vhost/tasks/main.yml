@@ -1,8 +1,8 @@
 ---
 - name: copy script check domain exist
   template:
-    src: check_domains.sh
-    dest: /tmp
+    src: check_domains.sh.j2
+    dest: /tmp/check_domains.sh
     mode: 755
   tags:
     -vhost
