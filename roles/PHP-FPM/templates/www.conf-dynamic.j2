@@ -8,10 +8,12 @@ user = {{ user_domain }}
 group = {{ user_domain }}
 
  ; Choose how the process manager will control the number of child processes.
-pm = ondemand
-pm.max_children = 2
-pm.max_requests = 250
-pm.process_idle_timeout = 10s
+pm = dynamic
+pm.max_children = 100
+pm.start_servers = 32
+pm.min_spare_servers = 16
+pm.max_spare_servers = 32
+pm.max_requests = 200
 php_admin_flag[log_errors] = on
 slowlog = /home/{{ user_domain }}/domains/{{ server_name }}/logs/php-slow.log
 request_slowlog_timeout = 5s
@@ -30,10 +32,12 @@ user = {{ user_domain }}
 group = {{ user_domain }}
 
  ; Choose how the process manager will control the number of child processes.
-pm = ondemand
-pm.max_children = 2
-pm.max_requests = 250
-pm.process_idle_timeout = 10s
+pm = dynamic
+pm.max_children = 100
+pm.start_servers = 32
+pm.min_spare_servers = 16
+pm.max_spare_servers = 32
+pm.max_requests = 200
 php_admin_flag[log_errors] = on
 slowlog = /home/{{ user_domain }}/domains/{{ server_name }}/logs/php-slow.log
 request_slowlog_timeout = 5s
@@ -52,10 +56,12 @@ user = {{ user_domain }}
 group = {{ user_domain }}
 
  ; Choose how the process manager will control the number of child processes.
-pm = ondemand
-pm.max_children = 2
-pm.max_requests = 250
-pm.process_idle_timeout = 10s
+pm = dynamic
+pm.max_children = 100
+pm.start_servers = 32
+pm.min_spare_servers = 16
+pm.max_spare_servers = 32
+pm.max_requests = 200
 php_admin_flag[log_errors] = on
 slowlog = /home/{{ user_domain }}/domains/{{ server_name }}/logs/php-slow.log
 request_slowlog_timeout = 5s
@@ -74,10 +80,12 @@ user = {{ user_domain }}
 group = {{ user_domain }}
 
  ; Choose how the process manager will control the number of child processes.
-pm = ondemand
-pm.max_children = 2
-pm.max_requests = 250
-pm.process_idle_timeout = 10s
+pm = dynamic
+pm.max_children = 100
+pm.start_servers = 32
+pm.min_spare_servers = 16
+pm.max_spare_servers = 32
+pm.max_requests = 200
 php_admin_flag[log_errors] = on
 slowlog = /home/{{ user_domain }}/domains/{{ server_name }}/logs/php-slow.log
 request_slowlog_timeout = 5s
