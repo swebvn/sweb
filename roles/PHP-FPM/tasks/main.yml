@@ -63,16 +63,16 @@
     dest: '/opt/{{ php_name }}/lib/php/extensions/no-debug-non-zts-20170718/'
     remote_src: yes
 
-- name: enable opcache
-  lineinfile:
-    path: /opt/{{ php_name }}/lib/php.ini
-    line: zend_extension = "opcache.so"
-
 
 - name: enable ioncube loader
   lineinfile:
     path: /opt/{{ php_name }}/lib/php.ini
     line: zend_extension = "ioncube_loader_lin_7.2.so"
+    
+- name: enable opcache
+  lineinfile:
+    path: /opt/{{ php_name }}/lib/php.ini
+    line: zend_extension = "opcache.so"
 
 - name: change defaul config www.conf
   shell: mv /opt/{{ php_name }}/etc/php-fpm.d/www.conf.default /opt/{{ php_name }}/etc/php-fpm.d/www.conf
