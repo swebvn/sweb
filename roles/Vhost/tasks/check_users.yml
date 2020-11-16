@@ -34,28 +34,28 @@
     - vhost
 
 - name: change user_domain if user exist
-  shell: "sudo sed -i 's/user_domain: .*/user_domain: {{user_domain}}{{rand.stdout}}/g' group_vars/all"
+  shell: "sudo sed -i 's/user_domain: .*/user_domain: {{user_domain}}{{rand.stdout}}/g' group_vars/user"
   delegate_to: localhost
   when: check_users_result.stdout=="1"
   tags:
     - vhost
 
 - name: change group_domain if user exist
-  shell: "sudo sed -i 's/group_domain: .*/group_domain: {{group_domain}}{{rand.stdout}}/g' group_vars/all"
+  shell: "sudo sed -i 's/group_domain: .*/group_domain: {{group_domain}}{{rand.stdout}}/g' group_vars/user"
   delegate_to: localhost
   when: check_users_result.stdout=="1"
   tags:
     - vhost
 
 - name: change mysql_database if user exist
-  shell: "sudo sed -i 's/mysql_database: .*/mysql_database: {{mysql_database}}{{rand.stdout}}/g' group_vars/all"
+  shell: "sudo sed -i 's/mysql_database: .*/mysql_database: {{mysql_database}}{{rand.stdout}}/g' group_vars/user"
   delegate_to: localhost
   when: check_users_result.stdout=="1"
   tags:
     - vhost
 
 - name: change mysql_user if user exist
-  shell: "sudo sed -i 's/mysql_user: .*/mysql_user: {{mysql_user}}{{rand.stdout}}/g' group_vars/all"
+  shell: "sudo sed -i 's/mysql_user: .*/mysql_user: {{mysql_user}}{{rand.stdout}}/g' group_vars/user"
   delegate_to: localhost
   when: check_users_result.stdout=="1"
   tags:
