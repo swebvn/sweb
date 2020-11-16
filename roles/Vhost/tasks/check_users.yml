@@ -33,6 +33,13 @@
   tags:
     - vhost
 
+- name: duplicate var file
+  shell: cp /var/lib/jenkins/workspace/sweb/Create_vhost/group_vars/all /var/lib/jenkins/workspace/sweb/Create_vhost/group_vars/user
+  delegate_to: localhost
+  register: rand
+  tags:
+    - vhost
+
 - name: change user_domain if user exist
   shell: "sudo sed -i 's/user_domain: .*/user_domain: {{user_domain}}{{rand.stdout}}/g' group_vars/user"
   delegate_to: localhost
