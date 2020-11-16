@@ -3,9 +3,11 @@
   include_tasks: "check_users.yml"
   tags:
     - vhost
-    
+
 - name: include vars
   include_vars: group_vars/user
+  tags:
+    - vhost
 
 - name: copy script check domain exist
   template:
