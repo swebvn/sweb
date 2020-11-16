@@ -34,7 +34,7 @@
     - vhost
 
 - name: duplicate var file
-  shell: cp /var/lib/jenkins/workspace/sweb/Create_vhost/group_vars/all /var/lib/jenkins/workspace/sweb/Create_vhost/group_vars/user
+  shell: touch /var/lib/jenkins/workspace/sweb/Create_vhost/group_vars/user
   delegate_to: localhost
   register: rand
   tags:

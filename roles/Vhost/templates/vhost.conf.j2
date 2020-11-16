@@ -17,7 +17,7 @@ server {
     return 404;
 }
 
-upstream {{ user_domain }} {
+upstream {{ server_name }} {
     zone tcp_servers 64k;
     server unix:/var/run/php-fpm.{{ server_name }}.sock1 weight=100 max_fails=3 fail_timeout=3;
     server unix:/var/run/php-fpm.{{ server_name }}.sock2 weight=100 max_fails=3 fail_timeout=3;
@@ -108,7 +108,7 @@ server {
 	
         try_files $uri =404;
         fastcgi_split_path_info ^(.+\.php)(/.+)$;
-        fastcgi_pass {{ user_domain }};
+        fastcgi_pass {{ server_name }};
         fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
         fastcgi_param SCRIPT_NAME $fastcgi_script_name;
         fastcgi_index index.php;
