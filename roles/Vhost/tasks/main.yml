@@ -1,6 +1,8 @@
 ---
 - name: include tasks
   include_tasks: "check_users.yml"
+  tags:
+    - vhost
 
 - name: copy script check domain exist
   template:
