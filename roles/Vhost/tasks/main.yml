@@ -131,6 +131,16 @@
     src: vhost-2.conf.j2
     dest: /etc/nginx/conf.d/{{ server_name }}.conf
   ignore_errors: yes
+  when: check_users_result.stdout != "1"
+  tags:
+    - template-2
+
+- name: copy template vhost file
+  template:
+    src: vhost-3.conf.j2
+    dest: /etc/nginx/conf.d/{{ server_name }}.conf
+  ignore_errors: yes
+  when: check_users_result.stdout == "1"
   tags:
     - template-2
 
