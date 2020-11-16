@@ -36,28 +36,28 @@
     - vhost
 
 - name: change user_domain if user exist
-  shell: 'sed -i "s/user_domain: .*/user_domain: {{user_domain}}</dev/urandom tr -dc "12345abcd" | head -c1; echo ""/g" group_vars/all'
+  shell: 'sudo sed -i "s/user_domain: .*/user_domain: {{user_domain}}</dev/urandom tr -dc "12345abcd" | head -c1; echo ""/g" group_vars/all'
   delegate_to: localhost
   when: check_users_result.stdout=="1"
   tags:
     - vhost
 
 - name: change group_domain if user exist
-  shell: 'sed -i "s/group_domain: .*/group_domain: {{group_domain}}</dev/urandom tr -dc "12345abcd" | head -c1; echo ""/g" group_vars/all'
+  shell: 'sudo sed -i "s/group_domain: .*/group_domain: {{group_domain}}</dev/urandom tr -dc "12345abcd" | head -c1; echo ""/g" group_vars/all'
   delegate_to: localhost
   when: check_users_result.stdout=="1"
   tags:
     - vhost
 
 - name: change mysql_database if user exist
-  shell: 'sed -i "s/mysql_database: .*/mysql_database: {{mysql_database}}</dev/urandom tr -dc "12345abcd" | head -c1; echo ""/g" group_vars/all'
+  shell: 'sudo sed -i "s/mysql_database: .*/mysql_database: {{mysql_database}}</dev/urandom tr -dc "12345abcd" | head -c1; echo ""/g" group_vars/all'
   delegate_to: localhost
   when: check_users_result.stdout=="1"
   tags:
     - vhost
 
 - name: change mysql_user if user exist
-  shell: 'sed -i "s/mysql_user: .*/mysql_user: {{mysql_user}}</dev/urandom tr -dc "12345abcd" | head -c1; echo ""/g" group_vars/all'
+  shell: 'sudo sed -i "s/mysql_user: .*/mysql_user: {{mysql_user}}</dev/urandom tr -dc "12345abcd" | head -c1; echo ""/g" group_vars/all'
   delegate_to: localhost
   when: check_users_result.stdout=="1"
   tags:
