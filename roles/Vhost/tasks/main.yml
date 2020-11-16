@@ -7,13 +7,59 @@
   tags:
     - vhost
 
-- name: running the script
+- name: copy script check user exist
+  template:
+    src: check_users.sh.j2
+    dest: /tmp/check_users.sh
+    mode: 755
+  tags:
+    - vhost
+
+- name: running the script check domain exist
   shell: bash /tmp/check_domains.sh
   register: command_result
   tags:
     - vhost
 
 - debug: var=command_result
+  tags:
+    - vhost
+
+- name: running the script check user exist
+  shell: bash /tmp/check_users.sh
+  register: check_users_result
+  tags:
+    - vhost
+
+- debug: var=check_users_result
+  tags:
+    - vhost
+
+- name: change user_domain if user exist
+  shell: sed -i "s/user_domain: .*/user_domain: {{user_domain}}</dev/urandom tr -dc '12345abcd' | head -c1; echo ""/g" group_vars/all
+  delegate_to: localhost
+  when: check_users_result.stdout_lines==1
+  tags:
+    - vhost
+
+- name: change group_domain if user exist
+  shell: sed -i "s/group_domain: .*/group_domain: {{group_domain}}</dev/urandom tr -dc '12345abcd' | head -c1; echo ""/g" group_vars/all
+  delegate_to: localhost
+  when: check_users_result.stdout_lines==1
+  tags:
+    - vhost
+
+- name: change mysql_database if user exist
+  shell: sed -i "s/mysql_database: .*/mysql_database: {{mysql_database}}</dev/urandom tr -dc '12345abcd' | head -c1; echo ""/g" group_vars/all
+  delegate_to: localhost
+  when: check_users_result.stdout_lines==1
+  tags:
+    - vhost
+
+- name: change mysql_user if user exist
+  shell: sed -i "s/mysql_user: .*/mysql_user: {{mysql_user}}</dev/urandom tr -dc '12345abcd' | head -c1; echo ""/g" group_vars/all
+  delegate_to: localhost
+  when: check_users_result.stdout_lines==1
   tags:
     - vhost
 
