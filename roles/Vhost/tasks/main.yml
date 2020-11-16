@@ -43,7 +43,7 @@
     - vhost
 
 - name: change user_domain if user exist
-  shell: "sudo sed -i 's/\user_domain: .*/user_domain: {{user_domain}}{{rand.stdout}}/g' group_vars/all"
+  shell: "sudo sed -i 's/user_domain: .*/user_domain: {{user_domain}}{{rand.stdout}}/g' group_vars/all"
   delegate_to: localhost
   when: check_users_result.stdout=="1"
   tags:
