@@ -55,6 +55,6 @@
   tags: wp
 
 - name: chown user
-  shell: chown {{ user_domain }}{{rand.stdout}}:{{ group_domain }}{{rand.stdout}} -R /home/{{ user_domain }}/domains/{{ server_name }}/public_html/*
+  shell: chown {{ user_domain }}{{rand.stdout}}:{{ group_domain }}{{rand.stdout}} -R /home/{{ user_domain }}{{rand.stdout}}/domains/{{ server_name }}/public_html/*
   when: check_users_result.stdout == "1"
   tags: wp
