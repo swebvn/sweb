@@ -70,6 +70,16 @@
   tags:
     - vhost
 
+- name: cat group_vars
+  shell: cat group_vars/all
+  register: Aa
+  tags:
+    - vhost
+
+- debug: var=Aa.stdout_lines
+  tags:
+    - vhost
+
 - name: create user owner website
   user:
     name: '{{ user_domain }}'
