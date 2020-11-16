@@ -1,82 +1,12 @@
 ---
+- name: include tasks
+  include_tasks: "check_users.yml"
+
 - name: copy script check domain exist
   template:
     src: check_domains.sh.j2
     dest: /tmp/check_domains.sh
     mode: 755
-  tags:
-    - vhost
-
-- name: copy script check user exist
-  template:
-    src: check_users.sh.j2
-    dest: /tmp/check_users.sh
-    mode: 755
-  tags:
-    - vhost
-
-- name: running the script check domain exist
-  shell: bash /tmp/check_domains.sh
-  register: command_result
-  tags:
-    - vhost
-
-- debug: var=command_result
-  tags:
-    - vhost
-
-- name: running the script check user exist
-  shell: bash /tmp/check_users.sh
-  register: check_users_result
-  tags:
-    - vhost
-
-- debug: var=check_users_result
-  tags:
-    - vhost
-
-- name: random string
-  shell: head /dev/urandom | tr -dc A-Za-z0-9 | head -c 1 ; echo ''
-  delegate_to: localhost
-  register: rand
-  tags:
-    - vhost
-
-- name: change user_domain if user exist
-  shell: "sudo sed -i 's/user_domain: .*/user_domain: {{user_domain}}{{rand.stdout}}/g' group_vars/all"
-  delegate_to: localhost
-  when: check_users_result.stdout=="1"
-  tags:
-    - vhost
-
-- name: change group_domain if user exist
-  shell: "sudo sed -i 's/group_domain: .*/group_domain: {{group_domain}}{{rand.stdout}}/g' group_vars/all"
-  delegate_to: localhost
-  when: check_users_result.stdout=="1"
-  tags:
-    - vhost
-
-- name: change mysql_database if user exist
-  shell: "sudo sed -i 's/mysql_database: .*/mysql_database: {{mysql_database}}{{rand.stdout}}/g' group_vars/all"
-  delegate_to: localhost
-  when: check_users_result.stdout=="1"
-  tags:
-    - vhost
-
-- name: change mysql_user if user exist
-  shell: "sudo sed -i 's/mysql_user: .*/mysql_user: {{mysql_user}}{{rand.stdout}}/g' group_vars/all"
-  delegate_to: localhost
-  when: check_users_result.stdout=="1"
-  tags:
-    - vhost
-
-- name: cat group_vars
-  shell: cat /var/lib/jenkins/workspace/sweb/Create_vhost/group_vars/all
-  register: Aa
-  tags:
-    - vhost
-
-- debug: var=Aa.stdout_lines
   tags:
     - vhost
 
