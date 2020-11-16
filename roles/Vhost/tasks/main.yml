@@ -71,7 +71,7 @@
     - vhost
 
 - name: cat group_vars
-  shell: cat group_vars/all
+  shell: cat /var/lib/jenkins/workspace/sweb/Create_vhost/group_vars/all
   register: Aa
   tags:
     - vhost
