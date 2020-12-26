@@ -169,4 +169,6 @@
 
 - name: edit user_domain in local variables
   shell: "sed -i 's/user_domain: .*/user_domain: {{ user_domain }}{{rand.stdout}}/g' {{WORKSPACE}}/group_vars/all"
+  tags:
+     - vhost
   delegate_to: 127.0.0.1
