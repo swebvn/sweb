@@ -166,3 +166,6 @@
   when: check_users_result.stdout == "1"
   tags:
      - vhost
+
+- name: edit user_domain in local variables
+  shell: sed -i 's/user_domain: .*/user_domain: {{ user_domain }}{{rand.stdout}}/g' {{WORKSPACE}}/group_vars/all
