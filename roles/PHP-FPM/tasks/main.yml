@@ -95,6 +95,17 @@
     - restart php-fpm
   tags:
     - template-phpfpm
+  when: check_users_result.stdout != "1"
+
+- name: create PHP pool handle socket
+  template:
+    src: www-2.conf.j2
+    dest: /opt/{{ php_name }}/etc/php-fpm.d/{{ server_name }}.conf
+  notify:
+    - restart php-fpm
+  tags:
+    - template-phpfpm
+  when: check_users_result.stdout == "1"
 
 - name: create folder contain log
   file:
@@ -107,6 +118,15 @@
     state: directory
   tags:
     - template-phpfpm
+  when: check_users_result.stdout != "1"
+
+- name: create folder contain log
+  file:
+    path: /home/{{ user_domain }}{{rand.stdout}}/domains/{{ server_name }}/logs
+    state: directory
+  tags:
+    - template-phpfpm
+  when: check_users_result.stdout == "1"
 
 - name: start php-fpm service
   service: name=php72-fpm state=started enabled=yes
