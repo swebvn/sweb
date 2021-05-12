@@ -18,7 +18,7 @@ fastcgi_cache_path /etc/nginx/cache/nginx-cache-{{ server_name }} levels=1:2 key
 #}
 
 upstream {{ server_name }} {
-    zone tcp_servers 64k;
+    #zone tcp_servers 64k;
     server unix:/var/run/php-fpm.{{ server_name }}.sock1 weight=100 max_fails=3 fail_timeout=3;
     server unix:/var/run/php-fpm.{{ server_name }}.sock2 weight=100 max_fails=3 fail_timeout=3;
     server unix:/var/run/php-fpm.{{ server_name }}.sock3 weight=100 max_fails=3 fail_timeout=3;
