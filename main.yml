@@ -13,6 +13,7 @@
     #- Filebeat
     #- Remove
     - Addon-services
+    - SSL-Snap
 
   tasks:
     - name: reboot all server
