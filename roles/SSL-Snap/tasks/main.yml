@@ -24,7 +24,7 @@
   tags:
     - snap
 - name: ensure snap is up to date
-  shell: sudo snap install core && sudo snap refresh core
+  shell: sudo snap install core && sudo sleep 10 && sudo snap refresh core && sudo sleep 10
   tags:
     - snap
 - name: install certbot using snap
