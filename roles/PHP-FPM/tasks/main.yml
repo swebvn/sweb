@@ -76,6 +76,7 @@
 
 - name: change defaul config www.conf
   shell: mv /opt/{{ php_name }}/etc/php-fpm.d/www.conf.default /opt/{{ php_name }}/etc/php-fpm.d/www.conf
+  ignore_errors: yes
 
 - name: copy start service file
   template:
