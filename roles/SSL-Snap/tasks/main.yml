@@ -23,17 +23,17 @@
   ignore_errors: yes
   tags:
     - snap
-#- name: ensure snap is up to date - install core
-#  shell: sudo snap install core
-#  tags:
-#    - snap
-#- name: ensure snap is up to date - refresh core
-#  shell: sudo snap refresh core
-#  tags:
-#    - snap   
+- name: ensure snap is up to date - install core
+  command: sudo snap install core
+  tags:
+    - snap
+- name: ensure snap is up to date - refresh core
+  command: sudo snap refresh core
+  tags:
+    - snap   
     
 - name: install certbot using snap
-  shell: sudo snap install --classic certbot
+  command: sudo snap install --classic certbot
   tags:
     - snap
 - name: prepare cerbot command
