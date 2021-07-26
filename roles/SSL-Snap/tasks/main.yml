@@ -46,6 +46,12 @@
   command: sudo snap install --classic certbot
   tags:
     - snap
+    
+- name: Sleep for 30 seconds and continue with play
+  wait_for:
+    timeout: 30
+  delegate_to: localhost
+  
 - name: prepare cerbot command
   shell: sudo ln -s /snap/bin/certbot /usr/bin/certbot
   ignore_errors: yes
