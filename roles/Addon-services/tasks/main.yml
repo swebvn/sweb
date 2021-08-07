@@ -200,3 +200,24 @@
       * hard nproc 102400
       * soft nofile 102400
       * hard nofile 102400
+
+- name: copy template config nginx
+  copy:
+    src: files/nginx
+    dest: /etc/logrotate.d/
+    owner: root
+    group: root
+    mode: 0644
+  tags:
+    - logrotate
+
+- name: copy template config php-fpm
+  copy:
+    src: files/php-fpm
+    dest: /etc/logrotate.d/
+    owner: root
+    group: root
+    mode: 0644
+  tags:
+    - logrotate
+
