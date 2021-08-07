@@ -221,3 +221,26 @@
   tags:
     - logrotate
 
+- name: Edit upload max size php-fpm
+  lineinfile:
+    path: /opt/php-7.2.18/lib/php.ini
+    regexp: '^upload_max_filesize ='
+    line: upload_max_filesize = 200M
+
+- name: Edit upload max size php-fpm
+  lineinfile:
+    path: /opt/php-7.2.18/lib/php.ini
+    regexp: '^post_max_size ='
+    line: post_max_size = 200M
+
+- name: Edit max_execution_time php-fpm
+  lineinfile:
+    path: /opt/php-7.2.18/lib/php.ini
+    regexp: '^max_execution_time ='
+    line: max_execution_time = 300
+
+- name: Edit max_input_time php-fpm
+  lineinfile:
+    path: /opt/php-7.2.18/lib/php.ini
+    regexp: '^max_input_time ='
+    line: max_input_time = 300
