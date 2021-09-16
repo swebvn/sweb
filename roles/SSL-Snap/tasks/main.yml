@@ -24,32 +24,32 @@
   tags:
     - snap
 - name: ensure snap is up to date - install core
-  command: sudo snap install core
+  command: sudo snap install core &
   tags:
     - snap
 - name: Sleep for 40 seconds and continue with play
   wait_for:
-    timeout: 40
+    timeout: 60
   delegate_to: localhost
 
 - name: ensure snap is up to date - refresh core
-  command: sudo snap refresh core
+  command: sudo snap refresh core &
   tags:
     - snap   
 
 - name: Sleep for 30 seconds and continue with play
   wait_for:
-    timeout: 30
+    timeout: 60
   delegate_to: localhost
 
 - name: install certbot using snap
-  command: sudo snap install --classic certbot
+  command: sudo snap install --classic certbot &
   tags:
     - snap
     
 - name: Sleep for 30 seconds and continue with play
   wait_for:
-    timeout: 30
+    timeout: 60
   delegate_to: localhost
   
 - name: prepare cerbot command
