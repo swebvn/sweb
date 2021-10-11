@@ -25,6 +25,7 @@
     - geoip-devel
     - net-tools
     - vim
+    - firewalld
     #- python
     #- python-pip
     #- python-setuptools
