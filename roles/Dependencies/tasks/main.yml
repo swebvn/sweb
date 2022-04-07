@@ -101,19 +101,19 @@
     dest: '{{ source_dir  }}'
 
 - name: download module third vts for Nginx
-  command: git clone git://github.com/vozlt/nginx-module-vts.git
+  command: git clone https://github.com/vozlt/nginx-module-vts.git
   args:
     chdir: '{{ source_dir  }}'
   ignore_errors: yes
 
 - name: download module third purge cache for Nginx
-  command: git clone git://github.com/FRiCKLE/ngx_cache_purge.git
+  command: git clone https://github.com/FRiCKLE/ngx_cache_purge.git
   args:
     chdir: '{{ source_dir  }}'
   ignore_errors: yes
 
 - name: download module third teskcokkies for Nginx
-  command: git clone git://github.com/kyprizel/testcookie-nginx-module.git
+  command: git clone https://github.com/kyprizel/testcookie-nginx-module.git
   args:
     chdir: '{{ source_dir  }}'
   ignore_errors: yes
