@@ -81,7 +81,7 @@
 - name: copy start service file
   template:
     src: php7-fpm.service.j2
-    dest: /lib/systemd/system/php72-fpm.service
+    dest: /lib/systemd/system/php7-fpm.service
 
 - name: create PHP pool handle socket
   template:
