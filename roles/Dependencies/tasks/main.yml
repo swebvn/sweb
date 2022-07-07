@@ -19,6 +19,8 @@
     - unzip
     - perl-ExtUtils-Embed
     - pam-devel
+    - sqlite-devel
+    - oniguruma-devel
     - gcc
     - gcc-c++
     - make
