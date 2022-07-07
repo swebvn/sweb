@@ -7,7 +7,8 @@ zlib: zlib-1.2.11.tar.gz
 nginx: 	nginx-1.15.6.tar.gz
 nginx_name: nginx-1.15.6
 
-php7: php-7.2.18.tar.gz
+#php7: php-7.2.18.tar.gz
+php7: php-7.4.30.tar.gz
 php_name: php-7.2.18
 
 
