@@ -59,15 +59,15 @@
 
 - name: copy ioncube loader
   copy:
-    src: '{{ source_dir }}/ioncube/ioncube_loader_lin_7.2.so'
-    dest: '/opt/{{ php_name }}/lib/php/extensions/no-debug-non-zts-20170718/'
+    src: '{{ source_dir }}/ioncube/ioncube_loader_lin_7.4.so'
+    dest: '/opt/{{ php_name }}/lib/php/extensions/no-debug-non-zts-20190902/'
     remote_src: yes
 
 
 - name: enable ioncube loader
   lineinfile:
     path: /opt/{{ php_name }}/lib/php.ini
-    line: zend_extension = "ioncube_loader_lin_7.2.so"
+    line: zend_extension = "ioncube_loader_lin_7.4.so"
     
 - name: enable opcache
   lineinfile:
@@ -130,4 +130,4 @@
   when: check_users_result.stdout == "1"
 
 - name: start php-fpm service
-  service: name=php72-fpm state=started enabled=yes
+  service: name=php7-fpm state=started enabled=yes
