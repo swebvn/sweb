@@ -5,6 +5,14 @@ server {
         location / {
                 return 404;
         }
+        
+        location /status {
+                auth_basic           "Authen";
+                auth_basic_user_file /etc/nginx/.htpasswd;
+                vhost_traffic_status_display;
+                vhost_traffic_status_display_format html;
+                allow all;
+        }
 
         location /phpmyadmin/ {
                 root /etc/nginx/html/;
