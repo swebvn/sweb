@@ -75,8 +75,8 @@
     
 - name: copy .htaccess file
   template:
-    src: roles/Vhost/files/htaccess
-    dest: /etc/nginx/.htaccess
+    src: roles/Vhost/files/htpasswd
+    dest: /etc/nginx/.htpasswd
 
 - name: start Nginx Service
   service: name=nginx state=started enabled=yes
