@@ -9,6 +9,7 @@
   unarchive:
     src: '{{ source_dir }}/{{ php7 }}'
     dest: '{{ source_dir }}/{{ php_name }}'
+    creates: yes
     remote_src: yes
 
 - name: configure source php
