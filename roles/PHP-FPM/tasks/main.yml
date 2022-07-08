@@ -4,17 +4,15 @@
     src: '{{ source_dir }}/ioncube_loaders_lin_x86-64.tar.gz'
     dest: '{{ source_dir }}'
     remote_src: yes
-    
-- name: ensure php directory exists
-  file:
-    path: '{{ source_dir }}/{{ php_name }}'
-    state: directory
 
 - name: extract source php
   unarchive:
     src: '{{ source_dir }}/{{ php7 }}'
-    dest: '{{ source_dir }}/{{ php_name }}'
+    dest: '{{ source_dir }}/'
     remote_src: yes
+    
+- name: ensure directory exist
+  shell: mv '{{ source_dir }}'/php-7.4.30 '{{ source_dir }}/{{ php_name }}'
 
 - name: configure source php
   command: ./configure --prefix=/opt/{{ php_name }} --with-pdo-pgsql --with-zlib-dir --with-freetype-dir --enable-mbstring --with-libxml-dir=/usr \
