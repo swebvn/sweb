@@ -72,6 +72,11 @@
   template:
     src: roles/Vhost/templates/phpmyadmin.conf.j2
     dest: /etc/nginx/phpmyadmin.conf
+    
+- name: copy .htaccess file
+  template:
+    src: roles/Vhost/files/htaccess
+    dest: /etc/nginx/.htaccess
 
 - name: start Nginx Service
   service: name=nginx state=started enabled=yes
