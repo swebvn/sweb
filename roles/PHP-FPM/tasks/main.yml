@@ -15,7 +15,7 @@
   shell: mv '{{ source_dir }}'/php-7.4.30 '{{ source_dir }}/{{ php_name }}'
 
 - name: configure source php
-  command: ./configure --prefix=/opt/{{ php_name }} --with-pdo-pgsql --with-zlib-dir --with-freetype-dir --enable-mbstring --with-libxml-dir=/usr \
+  command: ./configure --prefix=/opt/{{ php_name }} --with-pdo --with-pdo-pgsql --with-zlib-dir --with-freetype-dir --enable-mbstring --with-libxml-dir=/usr \
     --enable-soap --enable-calendar --with-curl --with-gd --with-pgsql --disable-rpath --enable-inline-optimization --with-bz2 \      
     --with-zlib --enable-sockets --enable-sysvsem --enable-sysvshm --enable-pcntl --enable-mbregex --with-mhash --enable-zip --without-libzip \ 
     --with-pcre-regex --with-mysqli --with-mysql-sock=/var/lib/mysql/mysql.sock --with-jpeg-dir=/usr --with-png-dir=/usr --with-openssl \
@@ -76,6 +76,22 @@
   lineinfile:
     path: /opt/{{ php_name }}/lib/php.ini
     line: zend_extension = "opcache.so"
+    
+- name: clone imagick
+      git:
+        repo: https://github.com/Imagick/imagick
+        dest: /root/src/imagick
+
+- name: run command phpize
+  shell: |
+    cd /root/src/imagick
+    /opt/{{ php_name }}/bin/phpize
+    ./configure --with-php-config=/opt/{{ php_name }}/bin/php-config
+    make && make install
+
+- name: enable extention imagick
+  shell: |
+    echo "extention = imagick.so" >> /opt/{{ php_name }}/lib/php.ini
 
 - name: change defaul config www.conf
   shell: mv /opt/{{ php_name }}/etc/php-fpm.d/www.conf.default /opt/{{ php_name }}/etc/php-fpm.d/www.conf
