@@ -28,6 +28,7 @@
     - net-tools
     - vim
     - firewalld
+    - ImageMagick-devel
     #- python
     #- python-pip
     #- python-setuptools
