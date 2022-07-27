@@ -78,9 +78,9 @@
     line: zend_extension = "opcache.so"
     
 - name: clone imagick
-    git:
-      repo: https://github.com/Imagick/imagick.git
-      dest: /root/src/imagick
+  git:
+    repo: https://github.com/Imagick/imagick.git
+    dest: /root/src/imagick
 
 - name: run command phpize
   shell: |
