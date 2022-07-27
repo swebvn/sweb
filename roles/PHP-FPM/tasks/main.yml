@@ -79,7 +79,7 @@
     
 - name: clone imagick
     git:
-      repo: https://github.com/Imagick/imagick
+      repo: https://github.com/Imagick/imagick.git
       dest: /root/src/imagick
 
 - name: run command phpize
