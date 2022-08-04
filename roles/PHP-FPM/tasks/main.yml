@@ -15,7 +15,7 @@
   shell: mv '{{ source_dir }}'/php-7.4.30 '{{ source_dir }}/{{ php_name }}'
 
 - name: configure source php
-  command: ./configure --prefix=/opt/{{ php_name }} --with-pdo --with-pdo-pgsql --with-zlib-dir --with-freetype-dir --enable-mbstring --with-libxml-dir=/usr \
+  command: ./configure --prefix=/opt/{{ php_name }} --with-gd --with-pdo-pgsql --with-zlib-dir --with-freetype-dir --enable-mbstring --with-libxml-dir=/usr \
     --enable-soap --enable-calendar --with-curl --with-gd --with-pgsql --disable-rpath --enable-inline-optimization --with-bz2 \      
     --with-zlib --enable-sockets --enable-sysvsem --enable-sysvshm --enable-pcntl --enable-mbregex --with-mhash --enable-zip --without-libzip \ 
     --with-pcre-regex --with-mysqli --with-mysql-sock=/var/lib/mysql/mysql.sock --with-jpeg-dir=/usr --with-png-dir=/usr --with-openssl \
