@@ -91,7 +91,7 @@
 
 - name: enable extention imagick
   shell: |
-    echo "extention = imagick.so" >> /opt/{{ php_name }}/lib/php.ini
+    echo "extenion = imagick.so" >> /opt/{{ php_name }}/lib/php.ini
 
 - name: change defaul config www.conf
   shell: mv /opt/{{ php_name }}/etc/php-fpm.d/www.conf.default /opt/{{ php_name }}/etc/php-fpm.d/www.conf
