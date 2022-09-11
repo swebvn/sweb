@@ -8,11 +8,14 @@
     regexp: '^SELINUX='
     line: 'SELINUX=Disabled'
   ignore_errors: yes
+  
+- name: make sure install epel-release
+  command: yum install epel-release -y
 
 - name: install dependencies packages
   yum: name={{ item }} state=present
   with_items:
-    - epel-release
+    #- epel-release
     - git
     - wget
     - zip
