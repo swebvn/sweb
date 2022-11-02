@@ -139,6 +139,21 @@ server {
 	allow all;
     }
 
+    if ($request_uri ~ "([^\?]*)\?(.*)rl-no-optimization=([^&]*)&?(.*)") {
+    set $original_path $1;
+    set $args1 $2;
+    set $unwanted $3;
+    set $args2 $4;
+    set $args "";
+
+    rewrite ^ "${original_path}?${args1}${args2}" permanent;
+   }
+
+   if ($request_uri ~ ^(.*)\?$) {
+        set $original_path $1;
+        rewrite ^ "${original_path}" permanent;
+   }
+
     #location /robots.txt {
 	#return 404;
     #}
