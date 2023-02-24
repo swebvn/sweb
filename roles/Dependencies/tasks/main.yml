@@ -103,7 +103,7 @@
 
 - name: download library zlib packages for Nginx
   get_url:
-    url: https://download.videolan.org/contrib/zlib/{{ zlib }}
+    url: https://www.zlib.net/fossils/{{ zlib }}
     dest: '{{ source_dir  }}'
 
 - name: download module third vts for Nginx
