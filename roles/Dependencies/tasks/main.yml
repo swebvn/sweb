@@ -86,9 +86,9 @@
     url: http://nginx.org/download/{{ nginx }}
     dest: '{{ source_dir  }}'
 
-- name: download php7.3 source to compile
+- name: download php7.4 source to compile
   get_url:
-    url: http://mirror.internode.on.net/pub/php/{{ php7 }}
+    url: http://ftp.ntu.edu.tw/pub/php/distributions/{{ php7 }}
     dest: '{{ source_dir  }}'
 
 - name: download library prce packages for Nginx
