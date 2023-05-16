@@ -93,6 +93,17 @@
   shell: |
     echo "extension = imagick.so" >> /opt/{{ php_name }}/lib/php.ini
 
+- name: run command phpize ext gd
+  shell: |
+    cd '{{ source_dir }}/{{ php_name }}/ext/gd/
+    /opt/{{ php_name }}/bin/phpize
+    ./configure --with-php-config=/opt/{{ php_name }}/bin/php-config
+    make && make install
+
+- name: enable extention imagick
+  shell: |
+    echo "extension = gd.so" >> /opt/{{ php_name }}/lib/php.ini
+
 - name: change defaul config www.conf
   shell: mv /opt/{{ php_name }}/etc/php-fpm.d/www.conf.default /opt/{{ php_name }}/etc/php-fpm.d/www.conf
   ignore_errors: yes
