@@ -14,6 +14,7 @@
     #- Remove
     - Addon-services
     - SSL-Snap
+    - Rclone
 
   tasks:
     - name: reboot all server

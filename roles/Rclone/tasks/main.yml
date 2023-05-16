@@ -1,0 +1,88 @@
+- name: Set timezone to Asia/Ho_Chi_Minh
+  timezone:
+    name: Asia/Ho_Chi_Minh
+  tags:
+    - rclone
+      
+
+- name: install rclone
+  shell: curl https://rclone.org/install.sh | sudo bash
+  ignore_errors: yes
+  tags:
+    - rclone
+
+- name: create folder rclone config
+  file:
+    path: /root/.config/rclone
+    state: directory
+    owner: root
+    group: root
+  ignore_errors: yes
+  tags:
+    - rclone
+
+- name: copy file config rclone
+  copy:
+    src: /opt/rclone_templates/rclone.conf.j2
+    dest: /root/.config/rclone/rclone.conf
+    owner: root
+    group: root
+  tags:
+    - rclone
+
+- name: create folder contain script backup
+  file:
+    path: /root/script
+    state: directory
+    owner: root
+    group: root
+  tags:
+    - rclone
+
+- name: copy script backup.sh
+  copy:
+    src: templates/backup_all.sh
+    dest: /root/script
+    mode: 755
+  tags:
+    - rclone
+
+- name: copy script backup.sh
+  copy:
+    src: templates/backup_db.sh
+    dest: /root/script
+    mode: 755
+  tags:
+    - rclone
+
+- name: Creates a cron file under /etc/cron.d
+  cron:
+    name: backup db schedule
+    minute: "*/15"
+    user: root
+    job: "/root/script/backup_db.sh >/dev/null 2>&1"
+  tags:
+    - rclone
+
+- name: Creates a cron file under /etc/cron.d
+  cron:
+    name: backup all schedule
+    #day: "*/2"
+    weekday: "0"
+    minute: "0"
+    hour: "0"
+    user: root
+    job: "/root/script/backup_all.sh >/dev/null 2>&1"
+  tags:
+    - rclone
+
+- name: get public ip
+  shell: curl ifconfig.me
+  register: publicip
+  tags:
+    - rclone
+
+- name: config serverip
+  shell: sudo sed -i "s/serverip/{{publicip.stdout}}/g" ~/.config/rclone/rclone.conf
+  tags:
+    - rclone
