@@ -95,7 +95,7 @@
 
 - name: run command phpize ext gd
   shell: |
-    cd '{{ source_dir }}/{{ php_name }}/ext/gd/
+    cd {{ source_dir }}/{{ php_name }}/ext/gd/
     /opt/{{ php_name }}/bin/phpize
     ./configure --with-php-config=/opt/{{ php_name }}/bin/php-config
     make && make install
