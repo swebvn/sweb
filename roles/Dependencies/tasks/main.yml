@@ -149,3 +149,20 @@
   args:
     chdir: '{{ source_dir  }}'
   ignore_errors: yes
+- name: remove libzip old version
+  shell: yum remove libzip-devel-0.10.1-8.el7.x86_64 libzip-0.10.1-8.el7.x86_64 -y
+
+- name: cp new libzip new version to remote host
+  copy:
+    src: files/{{ item }}
+    dest: /root/src/
+  with_items:
+    - libzip5-1.6.1-1.el7.remi.x86_64.rpm
+    - libzip5-devel-1.6.1-1.el7.remi.x86_64.rpm
+  ignore_errors: yes
+
+- name: install libzip new version
+  shell: |
+   rpm -ivh /root/src/libzip5-1.6.1-1.el7.remi.x86_64.rpm
+   rpm -ivh /root/src/libzip5-devel-1.6.1-1.el7.remi.x86_64.rpm
+  ignore_errors: yes
