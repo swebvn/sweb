@@ -91,6 +91,20 @@
     url: http://ftp.ntu.edu.tw/pub/php/distributions/{{ php7 }}
     dest: '{{ source_dir  }}'
 
+# - name: download library prce packages for Nginx
+#   get_url:
+#     url: http://www.mirrorservice.org/sites/ftp.exim.org/pub/pcre/{{ pcre }}
+#     dest: '{{ source_dir  }}'
+
+# - name: download library openssl packages for Nginx
+#   get_url:
+#     url: https://ftp.openssl.org/source/old/1.0.2/{{ openssl }}
+#     dest: '{{ source_dir  }}'
+
+# - name: download library zlib packages for Nginx
+#   get_url:
+#     url: https://www.zlib.net/fossils/{{ zlib }}
+#     dest: '{{ source_dir  }}'
 - name: download library prce packages for Nginx
   get_url:
     url: http://www.mirrorservice.org/sites/ftp.exim.org/pub/pcre/{{ pcre }}
@@ -98,12 +112,12 @@
 
 - name: download library openssl packages for Nginx
   get_url:
-    url: https://ftp.openssl.org/source/old/1.0.2/{{ openssl }}
+    url: https://ftp.openssl.org/source/{{ openssl }}
     dest: '{{ source_dir  }}'
 
 - name: download library zlib packages for Nginx
   get_url:
-    url: https://www.zlib.net/fossils/{{ zlib }}
+    url: https://download.videolan.org/contrib/zlib/{{ zlib }}
     dest: '{{ source_dir  }}'
 
 - name: download module third vts for Nginx
