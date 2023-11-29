@@ -59,6 +59,9 @@
 
 - name: insert configuration block in /opt/php-*/etc/php-fpm.conf
   shell: sed  -i '1i emergency_restart_threshold = 5' /opt/{{ php_name }}/etc/php-fpm.conf
+  
+- name: change opened limit files
+  shell: sudo sed -i 's/;rlimit_files = 1024/rlimit_files = 10024/' /opt/{{ php_name }}/etc/php-fpm.conf
 
 - name: copy ioncube loader
   copy:
