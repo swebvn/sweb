@@ -63,6 +63,8 @@
 - name: change opened limit files
   shell: sudo sed -i 's/;rlimit_files = 1024/rlimit_files = 10024/' /opt/{{ php_name }}/etc/php-fpm.conf
 
+- name: disable function
+  shell: sudo sed -i 's/disable_functions =.*/disable_functions = exec,passthru,shell_exec,system,proc_open,popen,curl_exec,curl_multi_exec,parse_ini_file,show_source/' /opt/{{ php_name }}/lib/php.ini
 - name: copy ioncube loader
   copy:
     src: '{{ source_dir }}/ioncube/ioncube_loader_lin_7.4.so'
