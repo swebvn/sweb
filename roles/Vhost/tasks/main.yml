@@ -110,16 +110,15 @@
 - name: change permission folder
   file:
     path: /home/{{ user_domain }}
-    mode: 701
+    mode: '0701'
   when: check_users_result.stdout != "1"
   tags:
     - vhost
 
 - name: change permission folder
   file:
-    file:
     path: /home/{{ user_domain }}
-    mode: 701
+    mode: '0701'
   when: check_users_result.stdout == "1"
   tags:
     - vhost
