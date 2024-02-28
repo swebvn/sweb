@@ -107,18 +107,6 @@
   tags:
     - vhost
 
-- name: change permission folder
-  shell: sudo chmod 701 /home/{{ user_domain }}
-  when: check_users_result.stdout != "1"
-  tags:
-    - vhost
-
-- name: change permission folder
-  shell: sudo chmod 701 /home/{{ user_domain }}
-  when: check_users_result.stdout == "1"
-  tags:
-    - vhost
-
 - name: create folder contains vhost
   file:
     path: /etc/nginx/conf.d
@@ -178,3 +166,15 @@
   when: check_users_result.stdout == "1"
   tags:
      - vhost
+
+- name: change permission folder
+  shell: sudo chmod 701 /home/{{ user_domain }}
+  when: check_users_result.stdout != "1"
+  tags:
+    - vhost
+
+- name: change permission folder
+  shell: sudo chmod 701 /home/{{ user_domain }}
+  when: check_users_result.stdout == "1"
+  tags:
+    - vhost
