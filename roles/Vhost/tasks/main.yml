@@ -89,7 +89,7 @@
   file:
     path: /home/{{ user_domain }}/domains/{{ server_name }}/public_html
     state: directory
-    mode: 701
+    mode: 755
     owner: '{{ user_domain }}'
     group: '{{ group_domain }}'
   when: check_users_result.stdout != "1"
@@ -103,6 +103,23 @@
     mode: 755
     owner: '{{ user_domain }}{{rand.stdout}}'
     group: '{{ group_domain }}{{rand.stdout}}'
+  when: check_users_result.stdout == "1"
+  tags:
+    - vhost
+
+- name: change permission folder
+  file:
+    path: /home/{{ user_domain }}
+    mode: 701
+  when: check_users_result.stdout != "1"
+  tags:
+    - vhost
+
+- name: change permission folder
+  file:
+    file:
+    path: /home/{{ user_domain }}
+    mode: 701
   when: check_users_result.stdout == "1"
   tags:
     - vhost
