@@ -13,6 +13,7 @@ pm.max_children = 200
 pm.max_requests = 500
 pm.process_idle_timeout = 10s
 php_admin_flag[log_errors] = on
+request_terminate_timeout = 3600
 slowlog = /home/{{ user_domain }}/domains/{{ server_name }}/logs/php-slow.log
 request_slowlog_timeout = 5s
 
@@ -35,6 +36,7 @@ pm.max_children = 200
 pm.max_requests = 500
 pm.process_idle_timeout = 10s
 php_admin_flag[log_errors] = on
+request_terminate_timeout = 3600
 slowlog = /home/{{ user_domain }}/domains/{{ server_name }}/logs/php-slow.log
 request_slowlog_timeout = 5s
 
@@ -57,6 +59,7 @@ pm.max_children = 200
 pm.max_requests = 500
 pm.process_idle_timeout = 10s
 php_admin_flag[log_errors] = on
+request_terminate_timeout = 3600
 slowlog = /home/{{ user_domain }}/domains/{{ server_name }}/logs/php-slow.log
 request_slowlog_timeout = 5s
 
@@ -79,6 +82,7 @@ pm.max_children = 200
 pm.max_requests = 500
 pm.process_idle_timeout = 10s
 php_admin_flag[log_errors] = on
+request_terminate_timeout = 3600
 slowlog = /home/{{ user_domain }}/domains/{{ server_name }}/logs/php-slow.log
 request_slowlog_timeout = 5s
 
