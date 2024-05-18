@@ -107,7 +107,8 @@
 #     dest: '{{ source_dir  }}'
 - name: download library prce packages for Nginx
   get_url:
-    url: http://www.mirrorservice.org/sites/ftp.exim.org/pub/pcre/{{ pcre }}
+    url: https://ftp.exim.org/pub/pcre/{{ pcre }}
+    #url: http://www.mirrorservice.org/sites/ftp.exim.org/pub/pcre/{{ pcre }}
     dest: '{{ source_dir  }}'
 
 - name: download library openssl packages for Nginx
