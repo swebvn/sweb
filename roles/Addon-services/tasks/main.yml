@@ -70,6 +70,24 @@
   tags:
     - zabbix
 
+- name: enable remote command
+  shell: sed -i '/^# EnableRemoteCommands=0$/c\EnableRemoteCommands=1' /etc/zabbix/zabbix_agentd.conf
+  ignore_errors: yes
+  tags:
+    - zabbix
+
+- name: enable unsafe user parameters
+  shell: sed -i '/^# UnsafeUserParameters=0$/c\UnsafeUserParameters=1' /etc/zabbix/zabbix_agentd.conf
+  ignore_errors: yes
+  tags:
+    - zabbix
+
+- name: enable remote log command
+  shell: sed -i '/^# LogRemoteCommands=0$/c\LogRemoteCommands=1' /etc/zabbix/zabbix_agentd.conf
+  ignore_errors: yes
+  tags:
+    - zabbix
+
 - name: start zabbix agent service
   systemd:
     state: started
