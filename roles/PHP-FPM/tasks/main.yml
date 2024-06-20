@@ -10,16 +10,16 @@
     src: '{{ source_dir }}/{{ php7 }}'
     dest: '{{ source_dir }}/'
     remote_src: yes
-    
+
 - name: ensure directory exist
   shell: mv '{{ source_dir }}'/php-7.4.30 '{{ source_dir }}/{{ php_name }}'
 
 - name: configure source php
   command: ./configure --prefix=/opt/{{ php_name }} --with-gd --with-pdo-pgsql --with-zlib-dir --with-freetype-dir --enable-mbstring --with-libxml-dir=/usr \
-    --enable-soap --enable-calendar --with-curl --with-pgsql --disable-rpath --enable-inline-optimization --with-bz2 \      
-    --with-zlib --enable-sockets --enable-sysvsem --enable-sysvshm --enable-pcntl --enable-mbregex --with-mhash --enable-zip --without-libzip \ 
+    --enable-soap --enable-calendar --with-curl --with-pgsql --disable-rpath --enable-inline-optimization --with-bz2 \
+    --with-zlib --enable-sockets --enable-sysvsem --enable-sysvshm --enable-pcntl --enable-mbregex --with-mhash --enable-zip --without-libzip \
     --with-pcre-regex --with-mysqli --with-mysql-sock=/var/lib/mysql/mysql.sock --with-jpeg-dir=/usr --with-png-dir=/usr --with-openssl \
-    --with-fpm-user=nginx --with-fpm-group=nginx --with-libdir=lib64 --enable-ftp --with-imap --with-imap-ssl --with-kerberos --with-gettext --enable-fpm 
+    --with-fpm-user=nginx --with-fpm-group=nginx --with-libdir=lib64 --enable-ftp --with-imap --with-imap-ssl --with-kerberos --with-gettext --enable-fpm
   args:
     chdir: '{{ source_dir }}/{{ php_name }}'
 
@@ -59,12 +59,12 @@
 
 - name: insert configuration block in /opt/php-*/etc/php-fpm.conf
   shell: sed  -i '1i emergency_restart_threshold = 5' /opt/{{ php_name }}/etc/php-fpm.conf
-  
+
 - name: change opened limit files
   shell: sudo sed -i 's/;rlimit_files = 1024/rlimit_files = 10024/' /opt/{{ php_name }}/etc/php-fpm.conf
 
 - name: disable function
-  shell: sudo sed -i 's/disable_functions =.*/disable_functions = exec,passthru,shell_exec,system,proc_open,popen,curl_exec,curl_multi_exec,parse_ini_file,show_source/' /opt/{{ php_name }}/lib/php.ini
+  shell: sudo sed -i 's/disable_functions =.*/disable_functions = exec,passthru,shell_exec,system,proc_open,popen,show_source/' /opt/{{ php_name }}/lib/php.ini
 - name: copy ioncube loader
   copy:
     src: '{{ source_dir }}/ioncube/ioncube_loader_lin_7.4.so'
@@ -76,12 +76,12 @@
   lineinfile:
     path: /opt/{{ php_name }}/lib/php.ini
     line: zend_extension = "ioncube_loader_lin_7.4.so"
-    
+
 - name: enable opcache
   lineinfile:
     path: /opt/{{ php_name }}/lib/php.ini
     line: zend_extension = "opcache.so"
-    
+
 - name: clone imagick
   git:
     repo: https://github.com/Imagick/imagick.git
