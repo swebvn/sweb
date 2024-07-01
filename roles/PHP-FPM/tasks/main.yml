@@ -16,7 +16,7 @@
 
 - name: configure source php
   command: ./configure --prefix=/opt/{{ php_name }} --with-gd --with-pdo-pgsql --with-zlib-dir --with-freetype-dir --enable-mbstring --with-libxml-dir=/usr \
-    --enable-soap --enable-calendar --with-curl --with-pgsql --disable-rpath --enable-inline-optimization --with-bz2 \
+    --enable-bcmath --enable-soap --enable-calendar --with-curl --with-pgsql --disable-rpath --enable-inline-optimization --with-bz2 \
     --with-zlib --enable-sockets --enable-sysvsem --enable-sysvshm --enable-pcntl --enable-mbregex --with-mhash --enable-zip --without-libzip \
     --with-pcre-regex --with-mysqli --with-mysql-sock=/var/lib/mysql/mysql.sock --with-jpeg-dir=/usr --with-png-dir=/usr --with-openssl \
     --with-fpm-user=nginx --with-fpm-group=nginx --with-libdir=lib64 --enable-ftp --with-imap --with-imap-ssl --with-kerberos --with-gettext --enable-fpm
