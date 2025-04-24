@@ -17,6 +17,7 @@
 - name: running the script check domain exist
   shell: bash /tmp/check_domains.sh
   register: command_result
+  ignore_errors: true
   tags:
     - vhost
 
@@ -111,7 +112,7 @@
   file:
     path: /etc/nginx/conf.d
     state: directory
-    
+
 - name: copy nginx.conf file
   copy:
     src: nginx.conf
@@ -154,7 +155,7 @@
   ignore_errors: yes
   tags:
     - vhost
-    
+
 - name: chmod folder /home
   shell: find /home/{{ user_domain }} -type d -exec chmod 755 {} \;
   when: check_users_result.stdout != "1"
